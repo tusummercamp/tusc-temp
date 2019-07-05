@@ -19,6 +19,7 @@ public class LambdaHandler implements RequestHandler<APIGatewayProxyRequestEvent
 		JSONObject body = new JSONObject(input.getBody());
 		String foo = body.getString("foo");
 		Integer baz = body.getInt("baz");
+		Integer temp = body.getInt("temp");
 		
 		// log body
 		logger.log("Received request");
@@ -32,6 +33,7 @@ public class LambdaHandler implements RequestHandler<APIGatewayProxyRequestEvent
 		
 		JSONObject responseBody = new JSONObject();
 		responseBody.put("status", "ok");
+		responseBody.put("temp", "ok");
 		
 		// create and return response
 		APIGatewayProxyResponseEvent response = new APIGatewayProxyResponseEvent();

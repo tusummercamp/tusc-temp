@@ -17,6 +17,7 @@ public class LambdaTester {
 		JSONObject requestBody = new JSONObject();
 		requestBody.put("foo", "bar");
 		requestBody.put("baz", 42);
+		requestBody.put("temp", 30);
 		
 		// create request
 		APIGatewayProxyRequestEvent request = new APIGatewayProxyRequestEvent();
