@@ -1,7 +1,6 @@
 package com.visteoncloud.tusc.sample;
 
 import org.json.JSONObject;
-
 import com.amazonaws.services.lambda.runtime.ClientContext;
 import com.amazonaws.services.lambda.runtime.CognitoIdentity;
 import com.amazonaws.services.lambda.runtime.Context;
@@ -27,8 +26,6 @@ public class LambdaTester {
 		
 		// create handler
 		LambdaHandler handler = new LambdaHandler();
-		APIGatewayProxyResponseEvent response = handler.handleRequest(request, new TestLambdaContext());
-
+		APIGatewayProxyResponseEvent response = handler.handleRequest(request, new TestLambdaContext());	
 	}
-
 }
