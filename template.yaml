@@ -9,12 +9,37 @@ Globals:
     Timeout: 5
     
 Resources:
+
+  DataTable:
+    Type: AWS::DynamoDB::Table
+    Properties: 
+      AttributeDefinitions: 
+        - AttributeName: User
+          AttributeType: S
+        - AttributeName: Time
+          AttributeType: N
+      KeySchema: 
+        - AttributeName: User
+          KeyType: HASH
+        - AttributeName: Time
+          KeyType: RANGE
+      ProvisionedThroughput: 
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+
   DataFunction:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: target/tusc-sample-0.0.1.jar
       Handler: com.visteoncloud.tusc.sample.LambdaHandler::handleRequest
       Runtime: java8
+      MemorySize: 1024
+      Policies:
+      - DynamoDBCrudPolicy:
+            TableName: !Ref DataTable
+      Environment:
+        Variables:
+          DYNAMODB_TABLE: !Ref DataTable
       Events:
         PostData:
           Type: Api
