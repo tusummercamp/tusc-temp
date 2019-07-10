@@ -77,6 +77,8 @@ public class LambdaHandler implements RequestHandler<APIGatewayProxyRequestEvent
 		catch (Exception e){
 			responseBody.put("status","error");
 			responseBody.put("errorMessage", e.toString());
+			response.setStatusCode(400);
+			response.setBody(responseBody.toString(2));
 		}
 		return response;
 	}
