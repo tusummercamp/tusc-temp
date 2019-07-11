@@ -53,6 +53,28 @@ public class DBClient {
 			items.add(item);
 		}
 		
+		ArrayList<ArrayList<Item>> resultingArray = new ArrayList<>();
+		ArrayList<Item> temp = new ArrayList<>();
+		
+		for (Item item : items) {
+			temp.add(item);
+			if (temp.size() >= 25) {
+				resultingArray.add(temp);
+				temp = new ArrayList<>();
+			}
+		}
+		resultingArray.add(temp);
+		
+		for (ArrayList<Item> item : resultingArray) {
+			doWrite(item);
+		}
+		
+	}
+	
+	private void doWrite(ArrayList<Item> items) {
+		
+		System.out.println("Writing "+ items.size() + " elements");
+		
 		// create write items
 		TableWriteItems writeItems = new TableWriteItems(tableName).withItemsToPut(items);
 		
@@ -69,7 +91,6 @@ public class DBClient {
 			}
 			
 		} while (outcome.getUnprocessedItems().size() > 0);
-		
 	}
 
 	public HashMap<BigInteger, Float> getItems(String user, BigInteger from, BigInteger to) {
