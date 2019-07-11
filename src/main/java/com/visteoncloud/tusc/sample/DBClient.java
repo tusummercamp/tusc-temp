@@ -63,7 +63,9 @@ public class DBClient {
 				temp = new ArrayList<>();
 			}
 		}
+		if(temp.size()>0) {
 		resultingArray.add(temp);
+		}
 		
 		for (ArrayList<Item> item : resultingArray) {
 			doWrite(item);
