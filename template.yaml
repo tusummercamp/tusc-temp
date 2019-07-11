@@ -6,7 +6,7 @@ Description: >
 
 Globals:
   Function:
-    Timeout: 5
+    Timeout: 30
     
 Resources:
 
